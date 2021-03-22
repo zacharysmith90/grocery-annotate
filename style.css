@@ -1,0 +1,310 @@
+/*
+This is a good layout for a mobile-first CSS template.
+Following this flow will minimize the number of styles you need to write and will ensure you are thinking, designing and developing mobile-first.
+Most of your styles get written like standard CSS, but for your mobile presentation. Generally speaking, a good mobile presention will stretch out nicely for larger screens.
+
+Sometimes, when we stretch out to larger screens, we need to make minor tweaks for the larger devices -- you can make these tweaks in the tablet media query, or if the issue exists on desktop only, the desktop media query.
+You will find this is far easier than the opposite task of using CSS to cram your desktop experience into a mobile device.
+*/
+/*********************************************************************
+ LOADS IN A NICE RESET TO ENSURE ALL BROWSERS HAVE THE SAME BASE STYLES
+*********************************************************************/
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css');
+
+/*********************************************************************
+  YOUR MOBILE/BASE STYLES GO HERE
+*********************************************************************/
+/** SET BORDER BOX EVERYWHERE */
+* {
+    box-sizing: border-box;
+}
+
+/** APPLY BASE TAG STYLES */
+body,
+html {
+    /* Sets default font-size to 16px, ensuring 1em = 16px; */
+    font-size: 16px;
+    font-family: 'Oxygen', sans-serif;
+}
+
+/** RESPONSIVE IMAGES */
+figure,
+img {
+    /* Sets image width to match parent */
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+p {
+    line-height: 1.5em;
+}
+
+header {
+    margin-bottom: 16px;
+}
+
+header p {
+    margin: 0;
+}
+
+.container, .caption {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+/** Caption styles */
+.caption,
+figcaption {
+    font-size: 0.9rem;
+    color: #8e8a8a;
+}
+
+/** BASE CLASSES */
+.annotate {
+    position: relative;
+}
+
+.annotate .dot {
+    position: absolute;
+    /**Dot goes where I tell it to go */
+    width: 25px;
+    height: 25px;
+    /**Make the dot a circle */
+    border-radius: 40%;
+    overflow: hidden;
+    /**Give the dot a white border*/
+    border: 2px solid #FFF;
+    color: #FFF;
+}
+
+/**What shows up when I click the dot */
+.annotate .dot .inner {
+    position: absolute;
+    opacity: 0;
+    padding: 25px;
+    width: 100%;
+    /**Move object down 50% */
+    top: 50%;
+    /**Move object up 50% from the new position */
+    transform: translateY(-50%);
+}
+
+/**Move x's to top right and for open annotations */
+.annotate .dot .close {
+    position: absolute;
+    color: #FFF;
+    top: 10px;
+    right: 10px;
+    font-size: 2em;
+    text-decoration: none;
+    opacity: 0;
+}
+
+/**Background color */
+.annotate .dot.green {
+    background-color: rgba(0, 110, 65, 0.65);
+}
+
+.annotate .dot.purple {
+    background-color: rgba(74, 2, 242, 0.65);
+}
+
+.annotate .dot.red {
+    background-color: rgba(230, 11, 65, 0.65);
+}
+
+.annotate .dot.blue {
+    background-color: rgba(11, 18, 230, 0.65);
+}
+
+.annotate .dot.pink {
+    background-color: rgba(240, 12, 182, 0.65);
+}
+
+.annotate .dot.brown {
+    background-color: rgba(160, 82, 45, 0.65);
+}
+
+/** Expands the dot to fill the image when it is clicked on */
+.annotate .dot.active {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 0;
+    border: 0;
+    z-index: 2;
+}
+
+.annotate .dot.active .inner,
+.annotate .dot.active .close {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/** Position dot id'd with battery. Do this positioning in Inspect in Chrome. Highlight div, edit element.style. Bring back in here.*/
+#limes86:not(.active) {
+    top: 17%;
+    left: 73%;
+}
+
+#eggs86:not(.active) {
+    bottom: 38%;
+    left: 65%;
+}
+
+#onions86:not(.active) {
+    right: 90%;
+    bottom: 40%;
+}
+
+#tomatoes86:not(.active) {
+    right: 70%;
+    bottom: 71%;
+}
+
+#chicken86:not(.active) {
+    top: 80%;
+    left: 22%;
+}
+
+#beef86:not(.active) {
+    top: 76%;
+    left: 76%;
+}
+
+#limesu:not(.active) {
+    right: 70%;
+    bottom: 71%;
+}
+
+#eggsu:not(.active) {
+    bottom: 38%;
+    left: 65%;
+}
+
+#onionsu:not(.active) {
+    right: 73%;
+    bottom: 48%;
+}
+
+#tomatoesu:not(.active) {
+    right: 49%;
+    bottom: 71%;
+}
+
+#chickenu:not(.active) {
+    top: 80%;
+    left: 22%;
+}
+
+#beefu:not(.active) {
+    top: 76%;
+    left: 76%;
+}
+
+/** Flex for content in box */
+.collage .img {
+    flex-basis: 50%;
+    padding: 2.5px;
+}
+
+.collage .img:nth-child(odd) {
+    padding-left: 0;
+}
+
+.collage .img:nth-child(even) {
+    padding-right: 0;
+}
+
+/** Container styles to keep content from becoming too wide or coming too close to
+* mobile edge */
+.container, .caption {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+/** Images are allowed to be a little wider when broken out into their own container */
+.container.image {
+    max-width: 1200px;
+    padding: 0;
+}
+
+.container.image figcaption {
+    padding: 5px 10px;
+}
+
+/*********************************************************************
+  YOUR TABLET/DESKTOP STYLES GO HERE
+*********************************************************************/
+@media(min-width: 681px) {
+    /* Any adjustments for tablets and larger go here.
+    Note these styles will be applied to anything 681px or larger -- so tablet AND desktop */
+}
+
+/** Flex for box, not content */
+.flex .item {
+    flex-basis: 48%;
+    display: none;
+}
+
+.flex .item {
+    padding: 5px;
+}
+
+.flex .item.active {
+    display: block;
+}
+
+.flex-image {
+    margin-bottom: 5px;
+    flex-basis: 48%
+}
+
+/*********************************************************************
+  YOUR DESKTOP-ONLY STYLES GO HERE
+*********************************************************************/
+@media(min-width: 768px) {
+
+    /* Any adjustments for desktop and larger go here.
+    Note these styles will be applied to anything 769px or larger -- so desktop */
+    .flex {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+    }
+}
+
+/*********************************************************************
+  YOUR MEDIUM-DESKTOP-ONLY STYLES GO HERE
+*********************************************************************/
+@media(min-width: 805px) {
+
+    /* Any adjustments for desktop and larger go here.
+    Note these styles will be applied to anything 769px or larger -- so desktop */
+    #onions86:not(.active) {
+        right: 90%;
+        bottom: 51%;
+    }
+
+    .container {
+        padding: 0;
+    }
+}
+
+/*********************************************************************
+  YOUR LARGE DESKTOP-ONLY STYLES GO HERE
+*********************************************************************/
+@media(min-width: 1205px) {
+
+    /* Any adjustments for desktop and larger go here.
+    Note these styles will be applied to anything 769px or larger -- so desktop */
+    .container.image .caption,
+    .container.image figcaption {
+        padding: 5px 0;
+    }
+}
